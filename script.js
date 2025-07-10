@@ -277,3 +277,18 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section)
   })
 })
+
+const section = document.getElementById('configuration');
+
+  // Блокуємо scroll на всій сторінці
+  function disableScroll() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Відновлюємо scroll
+  function enableScroll() {
+    document.body.style.overflow = '';
+  }
+
+  section.addEventListener('mouseenter', disableScroll);
+  section.addEventListener('mouseleave', enableScroll);
