@@ -147,13 +147,19 @@
                 this._scene = scene;
                 this._camera = new BABYLON.ArcRotateCamera(
                     "mainCamera",
-                    Math.PI / 4,
-                    Math.PI / 3,
+                    Math.PI / 12,
+                    Math.PI / 2.3,
                     25,
                     new BABYLON.Vector3(0, 0, 0),
                     scene
                 );
-this._camera.attachControl(canvas, true);
+                this._camera.lowerRadiusLimit = this._camera.upperRadiusLimit = this._camera.radius;
+                this._camera.attachControl(canvas, true);
+
+                // Блокуємо zoom
+                this._camera.lowerRadiusLimit = this._camera.upperRadiusLimit = this._camera.radius;
+                this._camera.pinchToZoom = false;
+                this._camera.keysZoom = [];
                 this._camera.rotation.set(0.21402315044176745, 1.5974857677541419, 0);
                 this._camera.minZ = 1;
                 this._camera.maxZ = 100000;
@@ -324,7 +330,7 @@ this._camera.attachControl(canvas, true);
                     const babylonBuoyRoot = babylonBuoyMeshes[0].parent;
                     const scale = 0.005;
                     babylonBuoyRoot.position.z = -0.2;
-                    babylonBuoyRoot.position.x = 6;
+                    babylonBuoyRoot.position.x = 7;
                     babylonBuoyRoot.position.y = -20;
 
                     babylonBuoyRoot.scaling.setAll(scale);
